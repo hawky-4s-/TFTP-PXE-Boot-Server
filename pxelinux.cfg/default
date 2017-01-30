@@ -4,35 +4,50 @@ timeout 100
 ONTIMEOUT chainlocal
 
 LABEL local
-        MENU LABEL Boot local hard drive
-        LOCALBOOT 0
+  MENU LABEL Boot local hard drive
+  LOCALBOOT 0
 
 LABEL chainlocal
 	MENU LABEL Chain boot to local hard drive
 	KERNEL chain.c32
 	APPEND hd0
-	
-LABEL CentOS-6.3-x86_64-eth0-gpt
-        MENU LABEL Install CentOS 6.3 x86_64 eth0 - GPT version for 2TB+ disks
-        KERNEL images/centos/6.3/x86_64/vmlinuz
-        APPEND ks=http://fubralimited.github.io/CentOS-KVM-Image-Tools/kickstarts/centos6x-hypervisor-gpt-selinux.cfg initrd=images/centos/6.3/x86_64/initrd.img ramdisk_size=100000 ksdevice=eth0 ip=dhcp url --url http://mirror.catn.com/pub/centos/6/os/x86_64
 
-LABEL CentOS-6.3-x86_64-eth0-mbr
-        MENU LABEL Install CentOS 6.3 x86_64 eth0 - MBR version for older BIOS
-        KERNEL images/centos/6.3/x86_64/vmlinuz
-        APPEND ks=http://fubralimited.github.io/CentOS-KVM-Image-Tools/kickstarts/centos6x-hypervisor-mbr-selinux.cfg initrd=images/centos/6.3/x86_64/initrd.img ramdisk_size=100000 ksdevice=eth0 ip=dhcp url --url http://mirror.catn.com/pub/centos/6/os/x86_64
+LABEL Centos-7.2-x86_64
+	MENU LABEL Install CentOS 7.2 x86_64 (Manual attended installation)
+	KERNEL images/centos/7.2.1511/x86_64/vmlinuz
+	APPEND initrd=images/centos/7.2.1511/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.repo=http://centos.serverspace.co.uk/centos/7.2.1511/os/x86_64/
 
-LABEL Centos-7.0-x86_64
-	MENU LABEL Install CentOS 7.0 x86_64 (Manual attended install)
-	KERNEL images/centos/7.0/x86_64/vmlinuz
-	APPEND initrd=images/centos/7.0/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.repo=http://centos.serverspace.co.uk/centos/7/os/x86_64
+LABEL Centos-7.2-x86_64-camunda-ci
+	MENU LABEL Install CentOS 7.2 x86_64 (Camunda CI unattended installation)
+	KERNEL images/centos/7.2.1511/x86_64/vmlinuz
+	APPEND ks=ftp://nas.camunda.loc/pxe/centos-ks/centos-7.2.1511-camunda-ci-ks.cfg initrd=images/centos/7.2.1511/x86_64/initrd.img ramdisk_size=100000 ip=dhcp
 
-LABEL Fedora-24-x86_64
-	MENU LABEL Install Fedora 24 x86_64
-	KERNEL images/fedora/24/x86_64/vmlinuz
-	APPEND initrd=images/fedora/24/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.stage2=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/releases/24/Everything/x86_64/os/
+LABEL Centos-7.2-x86_64-camunda-ci-vnc
+	MENU LABEL Install CentOS 7.2 x86_64 (Camunda CI VNC installation)
+	KERNEL images/centos/7.2.1511/x86_64/vmlinuz
+	APPEND ks=ftp://nas.camunda.loc/pxe/centos-ks/centos-7.2.1511-camunda-ci-ks.cfg initrd=images/centos/7.2.1511/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.vnc inst.vncpassword=camunda
 
-LABEL Ubuntu-16.04-Xenial
-  MENU LABEL Install Ubuntu 16.04 (Xenial)
-  KERNEL images/ubuntu/xenial/amd64/linux
-  APPEND initrd=images/ubuntu/xenial/amd64/initrd.gz vga=normal ramdisk_size=16432
+LABEL Centos-7.3-x86_64
+	MENU LABEL Install CentOS 7.3 x86_64 (Manual attended installation)
+	KERNEL images/centos/7.3.1611/x86_64/vmlinuz
+	APPEND initrd=images/centos/7.3.1611/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.repo=http://centos.serverspace.co.uk/centos/7.3.1611/os/x86_64/
+
+LABEL Centos-7.3-x86_64-camunda-ci
+	MENU LABEL Install CentOS 7.3 x86_64 (Camunda CI unattended installation)
+	KERNEL images/centos/7.3.1611/x86_64/vmlinuz
+	APPEND ks=ftp://nas.camunda.loc/pxe/centos-ks/centos-7.3.1611-camunda-ci-ks.cfg initrd=images/centos/7.3.1611/x86_64/initrd.img ramdisk_size=100000 ip=dhcp
+
+LABEL Centos-7.3-x86_64-camunda-ci-vnc
+	MENU LABEL Install CentOS 7.3 x86_64 (Camunda CI VNC installation)
+	KERNEL images/centos/7.3.1611/x86_64/vmlinuz
+	APPEND ks=ftp://nas.camunda.loc/pxe/centos-ks/centos-7.3.1611-camunda-ci-ks.cfg initrd=images/centos/7.3.1611/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.vnc inst.vncpassword=camunda
+
+#LABEL Fedora-24-x86_64
+#	MENU LABEL Install Fedora 24 x86_64
+#	KERNEL images/fedora/24/x86_64/vmlinuz
+#	APPEND initrd=images/fedora/24/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.stage2=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/releases/24/Everything/x86_64/os/
+
+#LABEL Ubuntu-16.04-Xenial
+# MENU LABEL Install Ubuntu 16.04 (Xenial)
+# KERNEL images/ubuntu/xenial/amd64/linux
+# APPEND initrd=images/ubuntu/xenial/amd64/initrd.gz vga=normal ramdisk_size=16432

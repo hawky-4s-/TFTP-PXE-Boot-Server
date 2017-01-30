@@ -5,8 +5,10 @@ This project contains the basic files and folder setup needed for a TFTP PXELINU
 
 It currently has support for network (PXE) installing:
 
-* Centos 6.x
-* Centos 7.0
+* Centos 7.2
+* Centos 7.3
+
+Optional:
 * Fedora 24
 * Ubuntu 16.04 (Xenial)
 
